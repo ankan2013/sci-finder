@@ -8,13 +8,15 @@ def parse_springer(data):
     title = page.findAll('h1', {'class': 'ArticleTitle'})
     if title:
         d["Title"] = title[0].text
-    page.findAll('span', {'class': 'authors__name'})
-    d["Authors"] = []
+    authors = []
     i = 0
     for author in page.findAll('span', {'class': 'authors__name'}):
         i += 1
-        d["Authors"].append(author.text)
-    d["Authors"][i - 1] = d["Authors"][i - 1][:-2]  # deleted unwanted comma
+        authors.append(author.text)
+    if i > 0:
+        authors[i - 1] = authors[i - 1][:-2]  # deleted unwanted comma
+    if authors:
+        d["Authors"] = authors
     abstract = page.findAll('section', {'class': 'Abstract'})
     if abstract:
         d["Abstract"] = abstract[0].text[len("Abstract"):].replace("\n", "<br>").replace("\"", "&quot")

@@ -3,7 +3,7 @@ Already made:
 arXiv, springer
 
 Next ones to make:
-https://www.omicsonline.org/open-access/
+https://www.omicsonline.org/open-access/ +
 https://thescipub.com/abstract/
 https://www.scientific-publications.net/en/article/
 http://science.sciencemag.org/content

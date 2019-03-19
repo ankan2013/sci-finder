@@ -8,14 +8,16 @@ def parse_arxiv(data):
     title = page.findAll('h1', {'class': 'title mathjax'})
     if title:
         d['Title'] = title[0].text[len("Title:"):]
-    d["Authors"] = []
+    authors_temp = []
     authors = page.findAll('div', {'class': 'authors'})
     i = 0
     if authors:
         for author in authors[0].findAll('a'):
             i += 1
-            d["Authors"].append((author.text + ", "))
-    d["Authors"][i-1] = d["Authors"][i-1][:-2]  # deleted unwanted comma
+            authors_temp.append((author.text + ", "))
+    authors_temp[i-1] = authors_temp[i-1][:-2]  # deleted unwanted comma
+    if authors:
+        d["Authors"] = authors_temp
     abstract = page.findAll('blockquote', {'class': 'abstract mathjax'})
     if abstract:
         d["Abstract"] = abstract[0].text[len("Abstract:"):].replace("\n", "<br>").replace("\"", "&quot")
