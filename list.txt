@@ -1,13 +1,22 @@
-16.03
+20.03
 Already made:
-arXiv, springer
-
-Next ones to make:
-https://www.omicsonline.org/open-access/ +
-https://thescipub.com/abstract/
-https://www.scientific-publications.net/en/article/
-http://science.sciencemag.org/content
-https://iopscience.iop.org/article/
+arXiv, springer, omicsonline, thescipub, scienceopen
 
 Further ones to select:
-https://en.wikipedia.org/wiki/List_of_scientific_journals
+https://en.wikipedia.org/wiki/List_of_academic_databases_and_search_engines
+
+Ideas for common case parsing:
+
+Title: check <h*>
+
+Authors: 1) check <div> and <span> and maybe <dl> with an attribute such as itemprop or class containing "author" as a substring of the value
+    2) check next_siblings after the title
+    3) maybe look for the word Authors in the whole text, get the tag, check siblings or siblings of the parent or grandparent tag
+
+Abstract: 1) check div, dl and span class and itemprop values
+        2) look for the word Abstract, maybe contained in h*
+        3) look for long text in a single tag
+
+DOI: practically always: look for "DOI " (!!! - a unique identifier for pdf search)
+
+Received date: different values of attrs and different tags, maybe the best option is looking for Date word in the text and maybe recognize that smth is a for of date notation

@@ -12,18 +12,20 @@ def parse_omicsonline(data):
             d["Title"] = title[1].text
         # Not title[0](!), there are SOME h1 units on this page
         # probably need ML to recognize which h1 is suitable
+
     authors = []
     i = 0
     authors_class = page.findAll('dl', {'class': 'authors'})
-    print(authors_class[0].prettify())
-    for author in authors_class[0].findAll('a'):
-        if author.get("title"):
-            authors.append(author.get("title"))
-            i += 1
-    if i > 0:
-        authors[i - 1] = authors[i - 1][:-2]  # deleted unwanted comma
+    if authors_class:
+        for author in authors_class[0].findAll('a'):
+            if author.get("title"):
+                authors.append(author.get("title"))
+                i += 1
+        if i > 0:
+            authors[i - 1] = authors[i - 1][:-2]  # deleted unwanted comma
     if authors:
         d["Authors"] = authors
+
     abstract = ""
     for div in page.findAll('div'):
         if div.text.find("Abstract") != -1:
@@ -33,12 +35,14 @@ def parse_omicsonline(data):
         # Further a function which automatically deletes all spaces and separators such as <br> may be implemented
         # the idea of counting number of symbols is probably OK
         # now use string formatting specific for each parser
+
     doi = ""
     for li in page.findAll('li'):
         if li.text.find("DOI") != -1:
             doi = li.text[len("DOI: "):]
     if doi:
         d["DOI"] = doi
+
     received = ""
     for em in page.findAll('em'):
         if em.text.find("Received Date") != -1:
