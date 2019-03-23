@@ -5,6 +5,7 @@ from omicsonline_parser import parse_omicsonline
 from page_saver import save
 from scipub_parser import parse_scipub
 from scienceopen_parser import parse_scienceopen
+from citeseerx_parser import parse_citeseerx
 app = Flask(__name__)
 
 
@@ -20,9 +21,10 @@ def receive():
             return parse_omicsonline(request.form['code'])
         elif request.form['url'].find("thescipub.com/abstract/") != -1:
             return parse_scipub(request.form['code'])
-        elif request.form['url'].find("www.scienceopen.com/document") != -1:
-            save(request.form['code'])
+        elif request.form['url'].find("scienceopen.com/document") != -1:
             return parse_scienceopen(request.form['code'])
+        elif request.form['url'].find("citeseerx.ist.psu.edu/viewdoc/") != -1:
+            return parse_citeseerx(request.form['code'], request.form['url'])
         else:
             return "Server : Not a valid page received"
 

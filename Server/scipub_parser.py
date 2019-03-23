@@ -1,6 +1,5 @@
 import bs4
 import json
-import re
 
 
 def parse_scipub(data):

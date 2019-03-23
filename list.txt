@@ -1,6 +1,6 @@
-20.03
+23.03
 Already made:
-arXiv, springer, omicsonline, thescipub, scienceopen
+arXiv, springer, omicsonline, thescipub, scienceopen, citeseerx (function for Abstract extracting is rather good for common case)
 
 Further ones to select:
 https://en.wikipedia.org/wiki/List_of_academic_databases_and_search_engines
@@ -18,5 +18,6 @@ Abstract: 1) check div, dl and span class and itemprop values
         3) look for long text in a single tag
 
 DOI: practically always: look for "DOI " (!!! - a unique identifier for pdf search)
+although doi may not present on a page... (maybe it doesn't exist for this article at all (?))
 
 Received date: different values of attrs and different tags, maybe the best option is looking for Date word in the text and maybe recognize that smth is a for of date notation
