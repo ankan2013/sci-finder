@@ -30,6 +30,7 @@ def parse_springer(data):
             if name[0].text == 'Received' or name[0].text == 'DOI':
                 value = info.findAll('span', {'class': 'bibliographic-information__value u-overflow-wrap'})
                 d[name[0].text] = value[0].text
+
     return json.dumps(d, ensure_ascii=False)
 
 

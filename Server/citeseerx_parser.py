@@ -29,7 +29,7 @@ def parse_citeseerx(data, url=None):
         for tag in page.findAll():
             if tag.text.find("Abstract") != -1:
                 for sibling in tag.next_siblings:
-                    if sibling == "\n" or sibling == " ":
+                    if type(sibling) != bs4.Tag:
                         continue
                     elif len(sibling.text) > 20:
                         abstract = sibling.text.replace("\n", "<br>").replace("\"", "&quot")
@@ -41,7 +41,9 @@ def parse_citeseerx(data, url=None):
     if abstract:
         d["Abstract"] = abstract
 
-    doi = re.search('doi=(.+?)&', url)
-    if doi:
-        d["DOI"] = doi.group(1)
+    if url:
+        doi = re.search('doi=(.+?)&', url)
+        if doi:
+            d["DOI"] = doi.group(1)
+
     return json.dumps(d, ensure_ascii=False)
