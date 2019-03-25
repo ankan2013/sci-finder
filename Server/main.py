@@ -7,6 +7,7 @@ from scipub_parser import parse_scipub
 from scienceopen_parser import parse_scienceopen
 from citeseerx_parser import parse_citeseerx
 from microsoft_parser import parse_microsoft
+from ssrn_parser import parse_ssrn
 app = Flask(__name__)
 
 
@@ -28,6 +29,8 @@ def receive():
             return parse_citeseerx(request.form['code'], request.form['url'])
         elif request.form['url'].find("academic.microsoft.com/paper") != -1:
             return parse_microsoft(request.form['code'])
+        elif request.form['url'].find("papers.ssrn.com/sol3/") != -1:
+            return parse_ssrn(request.form['code'])
         else:
             return "Server : Not a valid page received"
 
