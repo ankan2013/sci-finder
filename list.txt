@@ -1,6 +1,6 @@
 25.03
 Already made:
-arXiv, springer, omicsonline, thescipub, scienceopen, citeseerx, microsoft (academic.microsoft), ssrn
+arXiv, springer, omicsonline, thescipub, scienceopen, citeseerx, microsoft (academic.microsoft), ssrn, osti (US DOE)
 
 Further ones to select:
 https://en.wikipedia.org/wiki/List_of_academic_databases_and_search_engines
