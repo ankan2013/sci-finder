@@ -9,6 +9,7 @@ from citeseerx_parser import parse_citeseerx
 from microsoft_parser import parse_microsoft
 from ssrn_parser import parse_ssrn
 from osti_parser import parse_osti
+from ncbi_parser import parse_ncbi
 app = Flask(__name__)
 
 
@@ -34,6 +35,8 @@ def receive():
             return parse_ssrn(request.form['code'])
         elif request.form['url'].find("osti.gov/biblio") != -1:
             return parse_osti(request.form['code'])
+        elif request.form['url'].find("ncbi.nlm.nih.gov") != -1:
+            return parse_ncbi(request.form['code'])
         else:
             return "Server : Not a valid page received"
 
